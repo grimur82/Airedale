@@ -5,12 +5,13 @@ class Node:
 		self.left = None
 		self.right = None
 		self.number = None
-	# get integer value.
-	def getValue(self):
-		return self.number
-	# get right node.
-	def getRight(self):
-		return self.right
-	# get left node.
-	def getLeft(self):
-		return self.left
+		self.parent = None
+		self.height = 0
+	def setHeight(self, height):
+		self.height = height;
+	def getHeight(self):
+		return self.height;
+	def setParent(self, node):
+		self.parent = node;
+	def getParent(self):
+		return self.parent;
