@@ -1,4 +1,4 @@
-# Binary Tree
+# Algorithms and Data Structures
 
 ## Introduction
 
