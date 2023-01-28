@@ -1,7 +1,6 @@
 import unittest
 
 from app.algorithms.trees.BinarySearchTree import BinarySearchTree
-from app.data_structures.tree import BinaryNode
 
 
 class TestBinarySearchTree(unittest.TestCase):

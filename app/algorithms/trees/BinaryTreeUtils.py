@@ -33,20 +33,16 @@ def node_parents(root):
     return result
 
 
-def pre_order_node_exists(root, node):
+def node_exists(root, node):
     if root is None:
         return False
     if root is node:
         return True
-    left = pre_order_node_exists(root.left, node)
-    right = pre_order_node_exists(root.right, node)
-    if left is True or right is True:
-        return True
-    return False
+    return node_exists(root.left, node) or node_exists(root.right, node)
 
 
 def lowest_common_ancestor_recursive(root, node, node2):
-    validate_common_ancestor_nodes_exist_recursivly(root, node, node2)
+    validate_common_ancestor_nodes_exist_recursively(root, node, node2)
     return _lowest_common_ancestor_recursive_helper(root, node, node2)
 
 
@@ -62,23 +58,22 @@ def _lowest_common_ancestor_recursive_helper(root, node, node2):
     return left if right is None else right
 
 
-def validate_common_ancestor_nodes_exist_recursivly(root, node, node2):
-    print("We here ")
-    node_exists = pre_order_node_exists(root, node)
-    node2_exists = pre_order_node_exists(root, node2)
-    if not node_exists and not node2_exists:
-        raise Exception("Could not find nodes {} {} in tree {}".format(vars(node), vars(node2)))
-    node_check = node if not node_exists else node2 if not node2_exists else None
+def validate_common_ancestor_nodes_exist_recursively(root, node, node2):
+    has_node = node_exists(root, node)
+    has_node2 = node_exists(root, node2)
+    if not has_node and not has_node2:
+        raise Exception("Could not find nodes {} {} in tree {}".format(vars(node), vars(node2), vars(root)))
+    node_check = node if not has_node else node2 if not has_node2 else None
     if node_check:
-        raise Exception("Could not find node {} in tree {}".format(vars(node_check)))
+        raise Exception("Could not find node {} in tree {}".format(vars(node_check), vars(root)))
 
 
 def validate_common_ancestor_nodes_exist_iterativly(parents, node, node2):
     if node not in parents and node2 not in parents:
-        raise Exception("Could not find nodes {} {} in tree {}".format(vars(node), vars(node2)))
+        raise Exception("Could not find nodes {} {} in tree {}".format(vars(node), vars(node2), vars(parents)))
     node_check = node if node not in parents else node2 if node2 not in parents else None
     if node_check:
-        raise Exception("Could not find node {} in tree {}".format(vars(node)))
+        raise Exception("Could not find node {} in tree {}".format(vars(node_check), vars(parents)))
 
 
 def is_leaf_node(node):
@@ -126,21 +121,21 @@ def calculate_depth(root):
     return max(left, right) + 1
 
 
-def find_first_half_leaf_node_recursivly(root):
+def find_first_half_leaf_node_recursively(root):
     if root is None:
         return None
-    find_first_half_leaf_node_recursivly(root.left)
-    find_first_half_leaf_node_recursivly(root.right)
+    find_first_half_leaf_node_recursively(root.left)
+    find_first_half_leaf_node_recursively(root.right)
     if root and (root.left is None and root.right is not None) or (root.left is not None and root.right is None):
         return root
     return None
 
 
-def find_first_leaf_node_recursivly(root):
+def find_first_leaf_node_recursively(root):
     if root is None:
         return None
-    find_first_leaf_node_recursivly(root.left)
-    find_first_leaf_node_recursivly(root.right)
+    find_first_leaf_node_recursively(root.left)
+    find_first_leaf_node_recursively(root.right)
     if root and root.left is None and root.right is None:
         return root
     return None

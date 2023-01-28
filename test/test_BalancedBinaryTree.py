@@ -11,7 +11,7 @@ class TestBalancedBinaryTree(unittest.TestCase):
         balanced_tree = BalancedBinaryTree(BinaryNode(2))
         balanced_tree.insert_to_leaf_node(expected_node)
         
-        actual_node = balanced_tree.find_node_recursivly(expected_node)
+        actual_node = balanced_tree.find_node_recursively(expected_node)
         
         self.assertEqual(actual_node, expected_node)
         
@@ -21,7 +21,7 @@ class TestBalancedBinaryTree(unittest.TestCase):
         insert_node = BinaryNode(5)
         balanced_tree.insert_to_leaf_node(insert_node)
         
-        actual_node = balanced_tree.find_node_recursivly(BinaryNode((4)))
+        actual_node = balanced_tree.find_node_recursively(BinaryNode((4)))
         
         self.assertEqual(actual_node, None)
 
