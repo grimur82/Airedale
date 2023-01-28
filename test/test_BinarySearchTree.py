@@ -13,7 +13,7 @@ class TestBinarySearchTree(unittest.TestCase):
         binary_search_tree.insert_recursion(expected_value)
         
         result = binary_search_tree.find_value_node_recursive(20)
-        self.assertEqual(result.val, expected_value)
+        self.assertEqual(result and result.val, expected_value)
         
     def test_find_value_node_fail(self):
         binary_search_tree = BinarySearchTree()

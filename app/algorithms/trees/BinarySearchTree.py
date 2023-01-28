@@ -41,7 +41,6 @@ class BinarySearchTree:
         if root.val == val:
             return root
         if val < root.val:
-            return self._find_value_helper(root.left if val < root.val else root.right, val)
+            return self._find_value_helper(root.left, val)
         elif val > root.val:
             return self._find_value_helper(root.right, val)
-        return None if root.val is not val else root
